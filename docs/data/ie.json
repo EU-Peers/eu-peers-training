@@ -1,0 +1,105 @@
+{
+  "country": "Ireland",
+  "code": "ie",
+  "language": "en",
+  "contributor": "Stacey Phelan, South East Energy Agency (SEEA)",
+  "source": "Email to Sébastien Descours, 28 July 2026",
+  "updated": "2026-07-28",
+  "status": "draft-unverified",
+
+  "stakeholders": [
+    { "name": "SEAI — Sustainable Energy Authority of Ireland", "role": "National energy agency; runs the main home-energy grant schemes", "link": "https://www.seai.ie/grants/home-energy-grants" },
+    { "name": "Department of Climate, Energy and the Environment", "role": "Policy and scheme ownership", "link": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/" },
+    { "name": "Local Authorities", "role": "Promote retrofit schemes and social-housing upgrades", "link": "https://www.lgma.ie/en/irish-local-government/" },
+    { "name": "Registered One-Stop Shops (service providers)", "role": "Deliver deep-retrofit projects: management, grant admin, quality assurance", "link": "https://www.seai.ie/find-grants-and-contractors/find-contractors/registered-one-stop-shops" },
+    { "name": "Regional Energy Agencies (e.g. SEEA)", "role": "Guidance, awareness, retrofit project support", "link": "https://www.irishenergyagencies.ie/about/" },
+    { "name": "Banks and Credit Unions", "role": "Retail lending for energy upgrades", "link": "https://www.aib.ie/green-living" },
+    { "name": "Community Groups and Sustainable Energy Communities (SECs)", "role": "Community-led energy planning and retrofit", "link": "https://www.seai.ie/plan-your-energy-journey/for-your-community/sustainable-energy-communities/sec-map?view=list" }
+  ],
+
+  "instruments": {
+    "traditional": [
+      {
+        "category": "grant",
+        "name": "SEAI Individual Energy Upgrade Grants",
+        "provider": "SEAI",
+        "note": "Per-measure grants: attic insulation, wall insulation, heat pumps, solar PV, heating controls, windows and doors where eligible.",
+        "amount": "[TO VERIFY]",
+        "links": ["https://www.seai.ie/grants/home-energy-grants", "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/publications/energy-upgrades/"]
+      },
+      {
+        "category": "grant",
+        "name": "National Home Energy Upgrade Scheme",
+        "provider": "SEAI, delivered through registered One-Stop Shops (service providers)",
+        "note": "Grants for deep retrofit to a minimum BER B rating; project management and grant administration handled by the service provider.",
+        "amount": "[TO VERIFY]",
+        "links": ["https://www.seai.ie/grants/home-energy-grants", "https://www.citizensinformation.ie/en/housing/housing-grants-and-schemes/grants-for-home-renovations-and-improvements/grants-for-a-home-energy-upgrade/"]
+      },
+      {
+        "category": "grant",
+        "name": "Warmer Homes Scheme",
+        "provider": "SEAI",
+        "note": "Free energy upgrades for eligible low-income households.",
+        "amount": "Fully funded for eligible households",
+        "links": ["https://www.seai.ie/grants/home-energy-grants"]
+      },
+      {
+        "category": "grant",
+        "name": "SEAI Community Energy Grants",
+        "provider": "SEAI",
+        "note": "Supports community buildings, homes and businesses through community-led retrofit projects.",
+        "amount": "[TO VERIFY]",
+        "links": ["https://www.seai.ie/grants/community-grants"]
+      },
+      {
+        "category": "grant",
+        "name": "Local Authority Supports",
+        "provider": "Local authorities",
+        "note": "Promotion of retrofit schemes and SECs; some social-housing retrofit via national funding streams.",
+        "amount": "[TO VERIFY]",
+        "links": ["https://www.lgma.ie/en/irish-local-government/"]
+      }
+    ],
+
+    "testedGrowing": [
+      {
+        "category": "soft loan",
+        "name": "Home Energy Upgrade Loan Scheme",
+        "provider": "Government-backed, offered through participating banks and credit unions",
+        "note": "Low-cost loans, combinable with SEAI grants.",
+        "amount": "EUR 5,000 – 75,000",
+        "combinableWithGrant": true,
+        "links": ["https://www.seai.ie/grants/home-energy-grants/home-energy-upgrade-loan", "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/publications/home-energy-upgrade-loan-scheme/"]
+      },
+      {
+        "category": "green loan",
+        "name": "Green Home Improvement Loans",
+        "provider": "Commercial banks and credit unions",
+        "note": "Market products for energy-efficiency improvements.",
+        "amount": "[TO VERIFY]",
+        "combinableWithGrant": "[TO VERIFY]",
+        "links": ["https://www.aib.ie/green-living", "https://www.creditunion.ie/credit-union-locator/"]
+      }
+    ],
+
+    "newInnovative": []
+  },
+
+  "banking": {
+    "activeLenders": "AIB (green products) and other commercial banks; credit unions; participating lenders under the Home Energy Upgrade Loan Scheme.",
+    "loanTerms": "Home Energy Upgrade Loan Scheme: EUR 5,000–75,000, government-backed, low-cost, combinable with SEAI grants.",
+    "requiresEnergyCert": "[TO VERIFY]",
+    "guaranteeFund": "[TO VERIFY — not provided]",
+    "taxonomyLending": "[TO VERIFY — not provided]",
+    "biggestObstacle": "[TO VERIFY — not provided]"
+  },
+
+  "advisory": {
+    "providers": "SEAI-registered One-Stop Shops (service providers); regional energy agencies (e.g. SEEA); Sustainable Energy Communities.",
+    "services": "Technical advice, contractor management, grant administration, quality assurance.",
+    "citizenInfo": "https://www.citizensinformation.ie/en/housing/housing-grants-and-schemes/grants-for-home-renovations-and-improvements/",
+    "biggestGap": "[TO VERIFY — not provided]"
+  },
+
+  "scenarios": []
+}

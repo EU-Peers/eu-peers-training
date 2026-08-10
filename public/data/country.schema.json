@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EU PEERS country overlay",
+  "type": "object",
+  "required": ["country", "code", "status", "stakeholders", "instruments", "banking"],
+  "properties": {
+    "country":     { "type": "string" },
+    "code":        { "type": "string", "description": "ISO-ish short code used in ?country= and the filename" },
+    "language":    { "type": "string" },
+    "contributor": { "type": "string" },
+    "source":      { "type": "string" },
+    "updated":     { "type": "string" },
+    "status":      { "type": "string", "enum": ["default", "pending-data", "draft-unverified", "verified", "published"] },
+    "stakeholders": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name"], "properties": {
+        "name": { "type": "string" }, "role": { "type": "string" }, "link": { "type": "string" } } }
+    },
+    "instruments": {
+      "type": "object",
+      "required": ["traditional", "testedGrowing", "newInnovative"],
+      "properties": {
+        "traditional":   { "$ref": "#/$defs/instrumentList" },
+        "testedGrowing": { "$ref": "#/$defs/instrumentList" },
+        "newInnovative": { "$ref": "#/$defs/instrumentList" }
+      }
+    },
+    "banking":  { "type": "object" },
+    "advisory": { "type": "object" },
+    "scenarios": {
+      "type": "array",
+      "description": "Module 5 role-play. NOT derivable from links — supplied separately or drafted then corrected.",
+      "items": { "type": "object" }
+    }
+  },
+  "$defs": {
+    "instrumentList": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name"], "properties": {
+        "category": { "type": "string" }, "name": { "type": "string" }, "provider": { "type": "string" },
+        "note": { "type": "string" }, "amount": { "type": "string" },
+        "combinableWithGrant": {}, "links": { "type": "array", "items": { "type": "string" } } } }
+    }
+  }
+}

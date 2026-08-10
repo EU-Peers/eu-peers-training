@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU PEERS · Country Data Feeder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1917; --paper:#fafaf9; --card:#ffffff; --line:#d6d3d1;
+    --amber:#b45309; --amber-bg:#fffbeb; --amber-line:#fde68a;
+    --indigo:#3730a3; --indigo-bg:#eef2ff; --indigo-line:#c7d2fe;
+    --muted:#78716c; --ok:#047857;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;line-height:1.55}
+  header{position:sticky;top:0;z-index:10;background:#1c1917;color:#f5f5f4;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .bar{max-width:1200px;margin:0 auto;padding:.8rem 1rem;display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  .bar h1{font-family:'DM Sans',sans-serif;font-size:1.05rem;margin:0;font-weight:600;letter-spacing:-.01em}
+  .bar span{font-size:.75rem;color:#a8a29e}
+  main{max-width:1200px;margin:0 auto;padding:1.2rem 1rem 4rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.4rem}
+  @media(max-width:900px){main{grid-template-columns:1fr}}
+  h2{font-family:'DM Sans',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--amber);margin:1.6rem 0 .4rem}
+  h2 small{color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400}
+  .lede{font-size:1rem;color:#44403c;margin:.2rem 0 0}
+  label{display:block;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;margin:.7rem 0 .2rem}
+  input,textarea,select{width:100%;border:1px solid var(--line);border-radius:6px;padding:.5rem .6rem;font:inherit;font-size:.85rem;background:var(--card)}
+  textarea{min-height:5.2rem;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--amber-line);border-color:var(--amber)}
+  .hint{font-size:.75rem;color:var(--muted);margin:.15rem 0 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem;margin-top:.6rem}
+  /* preview column */
+  .preview{position:sticky;top:4.2rem;align-self:start;max-height:calc(100vh - 5.5rem);overflow:auto;padding-right:.2rem}
+  .ptitle{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.9rem;margin:.4rem 0 .6rem;color:#44403c}
+  .panel{border:2px solid var(--indigo-line);background:var(--indigo-bg);border-radius:8px;padding:1rem 1.1rem;margin-bottom:.9rem}
+  .panel h3{font-family:'DM Sans',sans-serif;font-size:.95rem;margin:0 0 .5rem;color:var(--indigo)}
+  .panel .where{font-size:.68rem;color:#818cf8;float:right;font-family:'DM Sans',sans-serif}
+  .panel ul{margin:.2rem 0;padding-left:1.1rem;font-size:.85rem}
+  .panel li{margin:.25rem 0}
+  .panel a{color:var(--indigo)}
+  .tierlab{font-family:'DM Sans',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:#6366f1;margin:.6rem 0 .1rem}
+  .verify{background:#fef3c7;color:#92400e;border-radius:3px;padding:0 .25rem;font-size:.72rem;font-family:'DM Sans',sans-serif}
+  .empty{border:2px dashed var(--line);border-radius:8px;padding:1.4rem;color:var(--muted);font-size:.85rem;text-align:center}
+  .actions{margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap}
+  button{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.85rem;border-radius:6px;padding:.55rem 1rem;cursor:pointer;border:1px solid var(--line);background:var(--card)}
+  button.primary{background:#1c1917;color:#fafaf9;border-color:#1c1917}
+  button.primary:hover{background:#44403c}
+  button:hover{background:#f5f5f4}
+  .note{font-size:.78rem;color:var(--muted);margin-top:.5rem}
+  .flag{display:none;background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:6px;padding:.5rem .7rem;font-size:.78rem;color:#92400e;margin-top:.6rem;font-family:'DM Sans',sans-serif}
+  .count{font-size:.72rem;color:var(--ok);font-family:'DM Sans',sans-serif}
+  footer{border-top:1px solid var(--line);margin-top:2rem}
+  .foot{max-width:1200px;margin:0 auto;padding:1.2rem 1rem;display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap}
+  .foot p{font-size:.68rem;color:var(--muted);max-width:640px;margin:.2rem 0}
+  .emblem{flex-shrink:0}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <h1>EU PEERS · Country Data Feeder — Financing Home Renovation</h1>
+  <span>Train the Trainer · national module input</span>
+</div></header>
+
+<main>
+  <section><!-- ============ FORM COLUMN ============ -->
+    <p class="lede">Paste links to your country's renovation-financing programmes below. As you type, the panel on the right shows <em>exactly</em> how your country's module will appear inside the training. About 10 minutes. Nothing is published without your review.</p>
+
+    <div class="card">
+      <div class="grid2">
+        <div><label for="country">Country</label><input id="country" placeholder="e.g. Ireland"></div>
+        <div><label for="code">Country code</label><input id="code" placeholder="e.g. ie" maxlength="3"></div>
+      </div>
+      <div class="grid2">
+        <div><label for="who">Your name &amp; organisation</label><input id="who" placeholder="e.g. Stacey Phelan, South East Energy Agency"></div>
+        <div><label for="email">Your email</label><input id="email" placeholder="you@organisation.eu"></div>
+      </div>
+    </div>
+
+    <h2>1 · Who is involved <small>→ appears in Module 2 (Stakeholders)</small></h2>
+    <div class="card">
+      <label for="stake">One actor per line: <em>Name — role (optional) — link</em></label>
+      <textarea id="stake" placeholder="SEAI — national energy agency — https://www.seai.ie/grants/home-energy-grants&#10;Local authorities — https://www.lgma.ie"></textarea>
+      <p class="hint">Just pasting a list of links also works — we tidy the rest.</p>
+    </div>
+
+    <h2>2 · Grants &amp; subsidies <small>→ Module 4 (Financing Plan)</small></h2>
+    <div class="card">
+      <label for="grants">One programme per line: <em>Name — what it does — link</em></label>
+      <textarea id="grants" placeholder="National Home Energy Upgrade Scheme — deep retrofit to BER B, via One-Stop Shops — https://…"></textarea>
+    </div>
+
+    <h2>3 · Loans &amp; financial instruments <small>→ Modules 3 &amp; 4</small></h2>
+    <div class="card">
+      <label for="loans">One per line: <em>Name — amount range if known — combinable with grant? — link</em></label>
+      <textarea id="loans" placeholder="Home Energy Upgrade Loan — €5,000–75,000 — yes — https://…"></textarea>
+      <p class="hint">Soft loans, green loans, guarantee funds, on-bill schemes, energy-efficient mortgages.</p>
+    </div>
+
+    <h2>4 · Banking reality <small>→ Module 3 · no links needed</small></h2>
+    <div class="card">
+      <label for="lenders">Which banks actually lend for renovation here?</label>
+      <input id="lenders" placeholder="one line">
+      <label for="obstacle">The single biggest reason banks hesitate or refuse?</label>
+      <input id="obstacle" placeholder="one line">
+      <label for="taxonomy">Is EU-Taxonomy-aligned lending real yet, or still mostly branding?</label>
+      <input id="taxonomy" placeholder="one line">
+    </div>
+
+    <h2>5 · One local homeowner story <small>→ Module 5 · optional</small></h2>
+    <div class="card">
+      <p class="hint" style="margin-bottom:.4rem">We draft the role-play scenarios and send them back for your correction. Rough figures for one household are enough to start — approximate is fine.</p>
+      <label for="sWho">Who they are (age, situation, housing type)</label>
+      <input id="sWho" placeholder="e.g. retired couple, 1970s semi-detached house">
+      <div class="grid2">
+        <div><label for="sBill">Monthly energy bill (€)</label><input id="sBill" inputmode="numeric"></div>
+        <div><label for="sCost">Renovation cost (€)</label><input id="sCost" inputmode="numeric"></div>
+        <div><label for="sSub">Grant available (€)</label><input id="sSub" inputmode="numeric"></div>
+        <div><label for="sSave">Expected monthly saving (€)</label><input id="sSave" inputmode="numeric"></div>
+      </div>
+    </div>
+
+    <div class="flag" id="escoFlag">Note: “ESCO” was replaced with “service provider” — the project's standing terminology.</div>
+
+    <div class="actions">
+      <button class="primary" id="btnDownload">Download country file (JSON)</button>
+      <button id="btnCopy">Copy JSON</button>
+      <button id="btnMail">Email it to EU PEERS</button>
+    </div>
+    <p class="note">The downloaded file is a <strong>draft</strong>: every figure we could not confirm is marked <span class="verify">[TO VERIFY]</span>. The EU PEERS team completes the sorting, verifies figures with you, and you approve the rendered module before it goes live. <strong>Download before closing this page — nothing is saved automatically.</strong></p>
+  </section>
+
+  <aside class="preview"><!-- ============ PREVIEW COLUMN ============ -->
+    <p class="ptitle">Live preview — how your country appears in the training</p>
+    <div id="pv"></div>
+  </aside>
+</main>
+
+<footer><div class="foot">
+  <svg class="emblem" viewBox="0 0 180 120" height="34" role="img" aria-label="European Union emblem" id="euflag"></svg>
+  <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or CINEA. Neither the European Union nor the granting authority can be held responsible for them.<br>EU PEERS · LIFE22-CET-EU-Peers/101120790 · Train the Trainer, Financing Home Renovation</p>
+</div></footer>
+
+<script>
+"use strict";
+// ---------- helpers ----------
+const $ = id => document.getElementById(id);
+const V = "[TO VERIFY]";
+const URL_RE = /(https?:\/\/[^\s,;)\u00BB\u201D]+)/g;
+function deESCO(s){
+  const had = /ESCO/i.test(s);
+  if (had) $('escoFlag').style.display = 'block';
+  return s.replace(/ESCOs/gi,'service providers').replace(/ESCO/gi,'service provider');
+}
+function parseLines(raw){
+  return raw.split(/\n+/).map(l=>l.trim()).filter(Boolean).map(line=>{
+    line = deESCO(line);
+    const links = (line.match(URL_RE)||[]);
+    let text = line.replace(URL_RE,'').replace(/[\u2014\u2013|,;:\-\s]+$/,'').trim();
+    const parts = text.split(/\s+[\u2014\u2013|]\s+|\s+-\s+/).map(p=>p.trim()).filter(Boolean);
+    return { name: parts[0] || (links[0]? new URL(links[0]).hostname.replace(/^www\./,'') : ''), extra: parts.slice(1).join(' — '), links };
+  }).filter(x=>x.name||x.links.length);
+}
+const esc = s => s.replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ---------- model ----------
+function build(){
+  const country = $('country').value.trim();
+  const code = $('code').value.trim().toLowerCase();
+  const stake = parseLines($('stake').value);
+  const grants = parseLines($('grants').value);
+  const loans = parseLines($('loans').value);
+  const b = { lenders: deESCO($('lenders').value.trim()), obstacle: deESCO($('obstacle').value.trim()), taxonomy: deESCO($('taxonomy').value.trim()) };
+  const sc = { who:$('sWho').value.trim(), bill:$('sBill').value.trim(), cost:$('sCost').value.trim(), sub:$('sSub').value.trim(), save:$('sSave').value.trim() };
+  const loanIsGuarantee = t => /guarantee|garantie|on-bill|pace|property/i.test(t);
+  const json = {
+    country: country || V, code: code || V, language: "en",
+    contributor: [$('who').value.trim(), $('email').value.trim()].filter(Boolean).join(' · ') || V,
+    source: "Country Data Feeder", updated: new Date().toISOString().slice(0,10),
+    status: "draft-unverified",
+    stakeholders: stake.map(s=>({ name:s.name, role:s.extra||undefined, link:s.links[0]||undefined })),
+    instruments: {
+      traditional: grants.map(g=>({ category:"grant", name:g.name, note:g.extra||undefined, amount:V, links:g.links })),
+      testedGrowing: loans.filter(l=>!loanIsGuarantee(l.name+' '+l.extra)).map(l=>({ category:"loan", name:l.name, note:l.extra||undefined, amount:/€|EUR|\d/.test(l.extra)?l.extra:V, links:l.links })),
+      newInnovative: loans.filter(l=>loanIsGuarantee(l.name+' '+l.extra)).map(l=>({ category:"guarantee/innovative", name:l.name, note:l.extra||undefined, amount:V, links:l.links }))
+    },
+    banking: { activeLenders:b.lenders||V, biggestObstacle:b.obstacle||V, taxonomyLending:b.taxonomy||V, guaranteeFund:V, loanTerms:V },
+    advisory: { providers:V, services:V, citizenInfo:V, biggestGap:V },
+    scenarios: (sc.who||sc.bill||sc.cost) ? [{ draft:true, persona:sc.who||V, monthlyEnergyBill:sc.bill||V, renovationCost:sc.cost||V, grantAvailable:sc.sub||V, expectedMonthlySaving:sc.save||V, note:"Seed figures only — full scenario drafted by EU PEERS and returned for correction." }] : []
+  };
+  return { json, stake, grants, loans, b, sc, country };
+}
+
+// ---------- preview ----------
+function render(){
+  const { json, stake, grants, loans, b, sc, country } = build();
+  const name = country || 'your country';
+  let h = '';
+  const panel = (where, title, body) => `<div class="panel"><span class="where">${where}</span><h3>In ${esc(name)}</h3>${body}</div>`;
+  if (stake.length) h += panel('Module 2 · Stakeholders','',
+    `<ul>${stake.map(s=>`<li><strong>${s.links[0]?`<a href="${esc(s.links[0])}" target="_blank" rel="noreferrer">${esc(s.name)}</a>`:esc(s.name)}</strong>${s.extra?` — ${esc(s.extra)}`:''}</li>`).join('')}</ul>`);
+  if (grants.length || loans.length){
+    let body='';
+    if (grants.length) body += `<p class="tierlab">Traditional</p><ul>${grants.map(g=>`<li><strong>${esc(g.name)}</strong>${g.extra?` — ${esc(g.extra)}`:''} <span class="verify">[TO VERIFY]</span>${g.links[0]?` <a href="${esc(g.links[0])}" target="_blank" rel="noreferrer">↗</a>`:''}</li>`).join('')}</ul>`;
+    const tg = loans.filter(l=>!/guarantee|garantie|on-bill|pace|property/i.test(l.name+' '+l.extra));
+    const ni = loans.filter(l=>/guarantee|garantie|on-bill|pace|property/i.test(l.name+' '+l.extra));
+    if (tg.length) body += `<p class="tierlab">Tested and growing</p><ul>${tg.map(l=>`<li><strong>${esc(l.name)}</strong>${l.extra?` · ${esc(l.extra)}`:''}${l.links[0]?` <a href="${esc(l.links[0])}" target="_blank" rel="noreferrer">↗</a>`:''}</li>`).join('')}</ul>`;
+    if (ni.length) body += `<p class="tierlab">New and innovative</p><ul>${ni.map(l=>`<li><strong>${esc(l.name)}</strong>${l.extra?` · ${esc(l.extra)}`:''}${l.links[0]?` <a href="${esc(l.links[0])}" target="_blank" rel="noreferrer">↗</a>`:''}</li>`).join('')}</ul>`;
+    h += panel('Module 4 · Financing Plan','',body);
+  }
+  if (b.lenders||b.obstacle||b.taxonomy){
+    h += panel('Module 3 · How Banks Think','',`<ul>${b.lenders?`<li><strong>Who actually lends:</strong> ${esc(b.lenders)}</li>`:''}${b.obstacle?`<li><strong>Biggest obstacle banks cite:</strong> ${esc(b.obstacle)}</li>`:''}${b.taxonomy?`<li><strong>Taxonomy-aligned lending:</strong> ${esc(b.taxonomy)}</li>`:''}</ul>`);
+  }
+  if (sc.who||sc.bill||sc.cost){
+    h += panel('Module 5 · The Conversation','',`<ul><li><strong>${esc(sc.who||'Local homeowner')}</strong>${sc.bill?` · bill €${esc(sc.bill)}/month`:''}${sc.cost?` · renovation €${esc(sc.cost)}`:''}${sc.sub?` · grant €${esc(sc.sub)}`:''}${sc.save?` · saving €${esc(sc.save)}/month`:''}</li></ul><p style="font-size:.72rem;color:#6366f1;margin:.3rem 0 0">Seed figures — EU PEERS drafts the full role-play scenario and returns it to you for correction.</p>`);
+  }
+  $('pv').innerHTML = h || `<div class="empty">Your country panels appear here as you fill the form.<br>They will render inside the training exactly like this.</div>`;
+  return json;
+}
+
+// ---------- outputs ----------
+function jsonText(){ return JSON.stringify(render(), null, 2); }
+$('btnDownload').addEventListener('click', ()=>{
+  const code = $('code').value.trim().toLowerCase() || 'country';
+  const blob = new Blob([jsonText()], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = code + '.json'; a.click();
+  URL.revokeObjectURL(a.href);
+});
+$('btnCopy').addEventListener('click', async e=>{
+  try{ await navigator.clipboard.writeText(jsonText()); e.target.textContent='Copied ✓'; setTimeout(()=>e.target.textContent='Copy JSON',1500);}catch(_){ alert('Copy failed — use Download instead.'); }
+});
+$('btnMail').addEventListener('click', ()=>{
+  const c = $('country').value.trim()||'country';
+  const subj = encodeURIComponent(`EU PEERS country data — ${c}`);
+  const body = encodeURIComponent(`Hello Nicholas,\n\nCountry data for ${c} attached (downloaded from the Country Data Feeder — file ${($('code').value.trim()||'xx')}.json).\n\n${$('who').value.trim()}\n`);
+  window.location.href = `mailto:nicholas.stancioff@ekubirojs.lv?subject=${subj}&body=${body}`;
+  alert('Your email app opens with a pre-written message.\nPlease ATTACH the downloaded .json file before sending.');
+});
+
+// live updates
+document.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('input', render));
+
+// EU emblem
+(function(){
+  const svg = $('euflag'); const w=180,h=120,R=h/3,cx=w/2,cy=h/2,sr=h/18;
+  let inner = `<rect width="${w}" height="${h}" fill="#003399"/>`;
+  for(let i=0;i<12;i++){
+    const a=-Math.PI/2+i*Math.PI/6, scx=cx+R*Math.cos(a), scy=cy+R*Math.sin(a);
+    const pts=[];
+    for(let j=0;j<5;j++){
+      const oa=-Math.PI/2+j*2*Math.PI/5, ia=oa+Math.PI/5;
+      pts.push(`${scx+sr*Math.cos(oa)},${scy+sr*Math.sin(oa)}`);
+      pts.push(`${scx+(sr/2.618)*Math.cos(ia)},${scy+(sr/2.618)*Math.sin(ia)}`);
+    }
+    inner += `<polygon points="${pts.join(' ')}" fill="#FFCC00"/>`;
+  }
+  svg.innerHTML = inner;
+})();
+render();
+</script>
+</body>
+</html>

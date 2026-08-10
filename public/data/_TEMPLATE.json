@@ -1,0 +1,27 @@
+{
+  "country": "",
+  "code": "",
+  "language": "",
+  "contributor": "",
+  "source": "",
+  "updated": "YYYY-MM-DD",
+  "status": "pending-data",
+  "stakeholders": [
+    { "name": "", "role": "", "link": "" }
+  ],
+  "instruments": {
+    "traditional":   [ { "category": "grant", "name": "", "provider": "", "note": "", "amount": "[TO VERIFY]", "links": [] } ],
+    "testedGrowing": [ { "category": "soft loan", "name": "", "provider": "", "note": "", "amount": "[TO VERIFY]", "combinableWithGrant": "[TO VERIFY]", "links": [] } ],
+    "newInnovative": []
+  },
+  "banking": {
+    "activeLenders": "",
+    "loanTerms": "",
+    "requiresEnergyCert": "[TO VERIFY]",
+    "guaranteeFund": "[TO VERIFY]",
+    "taxonomyLending": "[TO VERIFY]",
+    "biggestObstacle": "[TO VERIFY]"
+  },
+  "advisory": { "providers": "", "services": "", "citizenInfo": "", "biggestGap": "[TO VERIFY]" },
+  "scenarios": []
+}
