@@ -41,7 +41,7 @@ const initialCode = () => {
 export function CountryProvider({ children }: { children: ReactNode }) {
   const [code, setCode] = useState<string>(initialCode);
   const [data, setData] = useState<CountryData | null>(null);
-  const [registry, setRegistry] = useState<Registry>({ countries: [{ code: "generic", label: "Generic — all Europe" }] });
+  const [registry, setRegistry] = useState<Registry>({ countries: [{ code: "generic", label: "Europe-wide edition" }] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,6 +69,7 @@ export function CountryProvider({ children }: { children: ReactNode }) {
 
 export function CountrySelector() {
   const { code, setCode, registry, loading } = useCountry();
+  const hasUnpublished = registry.countries.some(c => c.status && c.status !== "default" && c.status !== "published");
   return (
     <label className="flex items-center gap-2 text-xs text-stone-300">
       <span className="hidden sm:inline">Country:</span>
@@ -76,12 +77,18 @@ export function CountrySelector() {
         aria-label="Select country overlay"
         value={code}
         onChange={e => setCode(e.target.value)}
+        title={hasUnpublished ? "* = draft or pending country data, not yet nationally confirmed" : undefined}
         className="bg-stone-800 border border-stone-600 rounded px-2 py-1 text-stone-100 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500"
       >
         {registry.countries.map(c => (
           <option key={c.code} value={c.code}>{c.label}{c.status && c.status !== "default" && c.status !== "published" ? " *" : ""}</option>
         ))}
       </select>
+      {hasUnpublished && (
+        <span className="hidden sm:inline text-stone-500" title="* = draft or pending country data, not yet nationally confirmed">
+          (* = draft/pending)
+        </span>
+      )}
       {loading && <span className="animate-pulse">…</span>}
     </label>
   );
@@ -90,13 +97,16 @@ export function CountrySelector() {
 /** Labelled overlay panel. Renders nothing when generic / empty / erroring. */
 export function CountryPanel({ children, show = true }: { children: ReactNode; show?: boolean }) {
   const { code, data, error } = useCountry();
-  if (code === "generic" || !show) return null;
+  if (code === "generic") return null;
+  // Error (no data file yet) always renders the explanatory note, even in modules
+  // whose `show` flag is derived from the (missing) data — otherwise those modules
+  // silently render nothing and it looks broken rather than "not ready yet".
   if (error) return (
     <div className="border border-dashed border-stone-300 rounded-lg p-4 my-6 text-sm text-stone-500">
       Country data for “{code}” is not available yet. The generic framework above applies everywhere.
     </div>
   );
-  if (!data) return null;
+  if (!show || !data) return null;
   return (
     <div className="border-2 border-indigo-200 bg-indigo-50/50 rounded-lg p-5 my-6">
       <div className="flex items-baseline justify-between mb-3 flex-wrap gap-1">

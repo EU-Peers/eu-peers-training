@@ -1,6 +1,6 @@
 {
   "countries": [
-    { "code": "generic", "label": "Generic — all Europe", "status": "default" },
+    { "code": "generic", "label": "Europe-wide edition", "status": "default" },
     { "code": "ie", "label": "Ireland", "status": "draft-unverified" },
     { "code": "ee", "label": "Estonia", "status": "pending-data" }
   ]
